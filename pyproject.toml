@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "airq-nyc"
+version = "0.1.0"
+description = "NYC air quality (AQI) calculation and CLI with reproducible analysis."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Karen Kalantaripour", email = "karen.kalantaripour@studio.unibo.it" }]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+
+dependencies = [
+  "pandas>=2.1",
+  "numpy>=1.26",
+  "matplotlib>=3.7"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0",
+  "pytest-cov>=4.0",
+  "coverage>=7.0"
+]
+
+[project.scripts]
+airq = "airq_nyc.cli_app:main"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+packages = ["airq_nyc"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["airq_nyc"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
